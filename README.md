@@ -20,6 +20,8 @@ SO THAT I can get a much needed break from reality
 #APIs used
 * https://opentdb.com/api_config.php
 * http://www.omdbapi.com/
+* https://insult.mattbas.org/api/
+* https://complimentr.com/
 
 #Wireframe / Layout
 
@@ -32,7 +34,12 @@ SO THAT I can get a much needed break from reality
         3. Questions Screen
             1. Create section to store info pulled about questions
             2. Pull information about questions
+        4. Results Screen
     3. Build flow between each of the views
-2. Get API Keys
+2. Get API Keys and apis working
     1. omdbapi
     2. opentdb
+
+         
+# Alternatives if we fail
+* Translate question to other languages
