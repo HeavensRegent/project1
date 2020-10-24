@@ -14,6 +14,8 @@ function quizInfo() {
         url: queryUrl,
         method: "GET"
     }).then(function (response) {
+        //Maybe make this it's own function using the response then call it each time a question is answered so
+        //it uses the same response and just moves on to the next question.
         console.log(response)
         for (var i = 0; i < 10; i++) {
             var question = $("<h1>").text(response.results[i].question);
