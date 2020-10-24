@@ -90,6 +90,8 @@ $(document).ready(() => {
         }).then(function (response) {
             //Empty the remarks div
             remarksDiv.empty();
+            //Unhide the remarks div
+            remarksDiv.removeClass('d-none');
             //Add the compliment
             remarksDiv.append($('<p>').text(response.compliment));
         })
@@ -103,6 +105,8 @@ $(document).ready(() => {
         }).then(function (response) {
             //Empty the remarks div
             remarksDiv.empty();
+            //Unhide the remarks div
+            remarksDiv.removeClass('d-none');
             //Add the insult
             remarksDiv.append($('<p>').text(response));
         })
@@ -158,7 +162,7 @@ $(document).ready(() => {
         //Else let them know and insult them 
         else {
             getInsult();
-            rightWrongDiv.text('You got this wrong!');
+            rightWrongDiv.html('You got this wrong! The correct answer was ' + questionArray[currentQuestion].correct_answer);
         }
         //Disable the answers so they can't click again
         $('.answer').prop('disabled', true);
@@ -174,6 +178,8 @@ $(document).ready(() => {
         currentQuestion++;
         //Hide the div with the next button
         $('.nextDiv').addClass('d-none');
+        remarksDiv.addClass('d-none');
+        rightWrongDiv.addClass('d-none');
         //If we are at the end go to the results page
         if(currentQuestion === numQuestions)
         {
