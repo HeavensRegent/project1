@@ -23,9 +23,16 @@
         <div class="container">
             <!-- Div for difficulty selection -->
             <h1> Movie Maniac</h1>
-            <a class="btn" href="">Difficulty</a>
-            <a class="btn" href="">Play</a>
+            <div class="form-group">
+                <label for="numQuestions">Number of Questions</label>
+                <input type="number" class="form-control" name="numQuestions" id="numQuestions">
+                <label for="category">Category</label>
+                <select class="form-control" name="category" id="category"></select>
+                <label for="difficulty">Difficulty</label>
+                <select class="form-control" name="difficulty" id="difficulty"></select>
+            </div>
             <!-- Start Quiz Button -->
+            <a class="btn" href="" id="startQuiz">Play</a>
         </div>
     </div>
     <!-- ______________________________________________ -->
