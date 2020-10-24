@@ -179,7 +179,6 @@ var difficulties = [
 
 function finalGif(result){
     var apikey = "EnV8tsRNu2U90oTqFnE64rRp6II4lVDM"
-    
     $.ajax({
         url: "https://api.giphy.com/v1/gifs/search?api_key=" + apikey + "&q=" + result,
         method: "GET"
