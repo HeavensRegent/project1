@@ -10,11 +10,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- PAGE 1 LANDING PAGE show/hide-->
-
+    <div class="page1">
+        <header id="header">
+            <!-- PAGE 1 LANDING PAGE show/hide-->
+        </header>
         <!-- <header> (Logo/Title) -->
         <div id="landingPage">
             <header class="navbar navbar-light bg-light">
@@ -28,27 +31,50 @@
         <!-- Start Quiz Button -->
             </div>
         </div>
-        <!-- ______________________________________________ -->
+    <!-- ______________________________________________ -->
 
-        <!-- PAGE 2 QUIZ show/hide-->
-
-        <!-- Current Score Div -->
-
-        <!-- Div for the question -->
-            <!-- What number -->
+    <!-- PAGE 2 QUIZ show/hide-->
+        <!-- Div for the question and answers-->
+        <div class="container text-center quizDiv border border-success"">
             <!-- The Question-->
-        
-        <!-- Div for the answers -->
-            <!-- Div for each question block x 4 -->
-
-        <!-- Div for insult/compliment -->
-
-        <!-- Div for hint -->
-            <!-- possible search box and button -->
-            <!-- div for the results of hint from OMDB show/hide-->
-        
-        <!-- Div for Right or Wrong show/hide-->
-    
+            <div id="questionDiv" class="border border-danger">
+                <h2>Questions will load here</h2>
+            </div>
+            <!-- Div for each answer block x 4 -->
+            <div id="answerDiv" class="container border border-danger">
+                <div class="row">
+                    <div class ="col-lg-6 bg-success" id="answer1">
+                        <h4>Answer1</h4>
+                    </div>
+                    <div class ="col-lg-6 bg-primary" id="answer2">
+                        <h4>Answer2</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class ="col-lg-6 bg-danger" id="answer3">
+                        <h4>Answer3</h4>
+                    </div>
+                    <div class ="col-lg-6 bg-warning" id="answer4">
+                        <h4>Answer4</h4>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Div for results -->
+        <div class="container text-center border border-success results">
+            <!-- Div for insult/compliment -->
+            <div id="remarksDiv" class="border border-danger">
+                <h4>Insult or Compliment will load here</h4>
+                <br>
+            </div>
+            <!-- Div for Right or Wrong show/hide-->
+            <div id="rightwrongDiv" class="border border-danger">
+                <h4>You are Correct or You are Wrong will load here</h4>
+                <br>
+            </div>
+        </div>
+    </div>
     <!-- ______________________________________________ -->
 
     <!-- PAGE 3 RESULTS OF QUIZ show/hide-->
@@ -92,6 +118,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
