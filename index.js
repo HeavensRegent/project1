@@ -10,6 +10,12 @@ $(document).ready(() => {
 
     var remarksDiv = $('#remarksDiv');
     var rightWrongDiv = $('#rightWrongDiv');
+    var questionDiv = $('#questionDiv');
+
+    var page1 = $('#page1');
+    var page2 = $('#page2');
+    var page3 = $('#page3');
+    var page4 = $('#page4');
 
     var questionArray = [];
 
@@ -35,11 +41,17 @@ $(document).ready(() => {
     }
 
     //Start the quiz
-    function startQuiz() {
-        numQuestions = (numQuestionsInput.val() || numQuestions);
+    function startQuiz(event) {
+        event.preventDefault();
+
+        //Get the values and set the current question to 0
+        numQuestions = (parseInt(numQuestionsInput.val()) || numQuestions);
         currentCategory = currentCategorySelect.val();
         currentDifficulty = currentDifficultySelect.val();
         currentQuestion = 0;
+
+        page1.addClass('d-none');
+        page2.removeClass('d-none');
 
         getQuizQuestions();
     }
@@ -47,15 +59,15 @@ $(document).ready(() => {
     //Retrieve the quiz questions based on the selected criteria
     function getQuizQuestions() {
         //If the option is any we don't want a value passed in
-        if(category === 'any')
-            category = '';
-        if(difficulty === 'any')
-            difficulty = '';
+        if(currentCategory === 'any')
+            currentCategory = '';
+        if(currentDifficulty === 'any')
+            currentDifficulty = '';
 
-        //Build the query url, if there is a selected category 
+        //Build the query url, if there is a selected currentCategory 
         var queryURL = "https://opentdb.com/api.php?amount=" + numQuestions 
-        + (category ? "&category=" + category : '')
-        + (difficulty ? "&difficulty=" + difficulty : '')
+        + (currentCategory ? "&category=" + currentCategory : '')
+        + (currentDifficulty ? "&difficulty=" + currentDifficulty : '')
 
         //Actual ajax call
         $.ajax({
@@ -85,7 +97,7 @@ $(document).ready(() => {
     //Get an insult
     function getInsult(text) {
         $.ajax({
-            url: 'https://insult.mattbas.org/api/insult',
+            url: 'https://cors-anywhere.herokuapp.com/https://insult.mattbas.org/api/insult',
             method: "GET",
         }).then(function (response) {
             //Empty the remarks div
@@ -97,45 +109,103 @@ $(document).ready(() => {
 
     //Show the currentQuestion
     function showQuestion() {
-        var question = questionArray[current];
-        var questionEl = $("<h1>").text(question.question);
+        questionDiv.empty();
+
+        var question = questionArray[currentQuestion];
+        var questionEl = $("<h1>").html(question.question);
         var answerArray = [];
 
         //Add the correct answer to the array
-        answerArray.push($("<button class='btn btn-success answer' id='correct'>").text(question.correct_answer));
+        answerArray.push($("<button class='btn btn-success answer' id='correct'>").html(question.correct_answer));
 
         //For each wrong answer add it to the array
         for(i in question.incorrect_answers)
         {
-            answerArray.push($("<button class='btn btn-success answer' id='correct'>").text(question.incorrect_answers[i]));
+            answerArray.push($("<button class='btn btn-success answer'>").html(question.incorrect_answers[i]));
         }
+
+        if(question.incorrect_answers.length < 2)
+            $('.second-row').addClass('d-none');
+        else
+            $('.second-row').removeClass('d-none');
         
         //Append the question
-        $("#questionDiv").append(questionEl);
+        questionDiv.append(questionEl);
 
         //Go append each answer in a random order to the dom
         var answersLength = question.incorrect_answers.length + 1;
         for(var i = 0; i < answersLength; i++)
         {
             var indexToUse = Math.floor(Math.random() * answerArray.length);
-            $("#answer" + i).text(answerArray[indexToUse]);
-            answerArray.splice(indexToUse);
+            $("#answer" + (i+1)).html(answerArray[indexToUse]);
+            answerArray.splice(indexToUse, 1);
         }
     }
 
+    //When they click on the start quiz button
     $('#startQuiz').on('click', startQuiz);
     
+    //When the click on an answer
     $("#answerDiv").on("click", ".answer", function(){
         //Show the rightWrongDiv
         rightWrongDiv.removeClass('d-none');
+        //If they are right let them know and give them a compliment
         if ($(this).attr("id") === "correct"){
             getCompliment();
             rightWrongDiv.text('You got this right!');
-            
-        } else {
+        }
+        //Else let them know and insult them 
+        else {
             getInsult();
             rightWrongDiv.text('You got this wrong!');
         }
+        //Disable the answers so they can't click again
+        $('.answer').prop('disabled', true);
+        //Show the div with the button to go to the next question
+        $('.nextDiv').removeClass('d-none');
+    });
+
+    //When the click on the next button
+    $('#nextQuestion').on('click', function(event) {
+        event.preventDefault();
+
+        //Increment the current question
+        currentQuestion++;
+        //Hide the div with the next button
+        $('.nextDiv').addClass('d-none');
+        //If we are at the end go to the results page
+        if(currentQuestion === numQuestions)
+        {
+            page2.addClass('d-none');
+            page3.removeClass('d-none');
+        }
+        //Else go to the next question
+        else
+        {
+            showQuestion();
+        }
+    });
+
+    //When they click on show Highscores
+    $('#showHighscores').on('click', function(event) {
+        event.preventDefault();
+
+        //Hide all other divs
+        page1.addClass('d-none');
+        page2.addClass('d-none');
+        page3.addClass('d-none');
+
+        //Show the highscore div
+        page4.removeClass('d-none');
+    });
+
+    //When they click on the go home button
+    $('#goHome').on('click', function(event) {
+        event.preventDefault();
+
+        //Hide pa
+        page4.addClass('d-none');
+        page1.removeClass('d-none');
     })
 });
 
