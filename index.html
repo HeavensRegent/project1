@@ -6,8 +6,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Turret+Road:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -16,21 +18,22 @@
 <body>
     <!-- PAGE 1 LANDING PAGE show/hide-->
 
-    <div class="page1">
+    <div id="page1">
         <!-- <header> (Logo/Title) -->
         <div id="landingPage">
             <header class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="#">Show Highscores</a>
+                <a class="navbar-brand" href="#" id='showHighscores'>Show Highscores</a>
             </header>
             <div class="container">
+
                 <!-- Div for difficulty selection -->
-                <h1> Movie Maniac</h1>
+                <h1 id="app-name"> Movie Maniac</h1>
                 <div class="form-group">
-                    <label for="numQuestions">Number of Questions</label>
+                    <label for="numQuestions" class="btn-selection">Number of Questions</label>
                     <input type="number" class="form-control" name="numQuestions" id="numQuestions" value="10">
-                    <label for="category">Category</label>
+                    <label for="category" class="btn-selection">Category</label>
                     <select class="form-control" name="category" id="category"></select>
-                    <label for="difficulty">Difficulty</label>
+                    <label for="difficulty" class="btn-selection">Difficulty</label>
                     <select class="form-control" name="difficulty" id="difficulty"></select>
                     <!-- Start Quiz Button -->
                     <a class="btn" href="" id="startQuiz">Play</a>
@@ -41,37 +44,40 @@
     <!-- ______________________________________________ -->
 
     <!-- PAGE 2 QUIZ show/hide-->
-    <div id="page2">
+    <div id="page2" class='d-none'>
         <!-- Div for the question and answers-->
-        <div class="container text-center quizDiv border border-success"">
+        <div class="container text-center quizDiv border border-success">
             <!-- The Question-->
-            <div id=" questionDiv" class="border border-danger">
-            <h2>Questions will load here</h2>
+            <div id="questionDiv" class="border border-danger">
+                <h2>Questions will load here</h2>
+            </div>
         </div>
         <!-- Div for each answer block x 4 -->
         <div id="answerDiv" class="container border border-danger">
             <div class="row">
-                <div class="col-lg-6 bg-success" id="answer1">
+                <div class="col-lg-6 bg-light" id="answer1">
                     <h4>Answer1</h4>
                 </div>
-                <div class="col-lg-6 bg-primary" id="answer2">
+                <div class="col-lg-6 bg-light" id="answer2">
                     <h4>Answer2</h4>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6 bg-danger" id="answer3">
+            <div class="row second-row">
+                <div class="col-lg-6 bg-light" id="answer3">
                     <h4>Answer3</h4>
                 </div>
-                <div class="col-lg-6 bg-warning" id="answer4">
+                <div class="col-lg-6 bg-light" id="answer4">
                     <h4>Answer4</h4>
                 </div>
             </div>
-
+            <div class="nextDiv d-none">
+                <a class="btn" href="" id="nextQuestion">Next Question</a>
+            </div>
         </div>
         <!-- Div for results -->
         <div class="container text-center border border-success results">
             <!-- Div for Right or Wrong show/hide-->
-            <div id="rightwrongDiv" class="border border-danger">
+            <div id="rightWrongDiv" class="border border-danger">
                 <h4>You are Correct or You are Wrong will load here</h4>
                 <br>
             </div>
@@ -101,13 +107,13 @@
     <!-- ______________________________________________ -->
 
     <!-- PAGE 4 Highscore page show/hide-->
-    <div id="highScore">
+    <div id="page4" class='d-none'>
         <div class="container">
             <!-- container Div showing highscores -->
             <div class="flex-center flex-column">
                 <h1 id="finalScore">High Scores</h1>
                 <ul id="highScoresList"></ul>
-                <a class="btn" href="">Go Home</a>
+                <a class="btn" href="" id="goHome">Go Home</a>
             </div>
             <!-- button div to go back to landing page -->
         </div>
