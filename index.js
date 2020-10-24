@@ -9,6 +9,7 @@ $(document).ready(() => {
     var currentDifficultySelect = $('#difficulty');
 
     var remarksDiv = $('#remarksDiv');
+    var rightWrongDiv = $('#rightWrongDiv');
 
     var questionArray = [];
 
@@ -69,32 +70,73 @@ $(document).ready(() => {
     }
 
     //Get a compliment
-    function getCompliment() {
+    function getCompliment(text) {
         $.ajax({
             url: 'https://complimentr.com/api',
             method: "GET",
         }).then(function (response) {
-            remarksDiv.text(response.compliment);
+            //Empty the remarks div
+            remarksDiv.empty();
+            //Add the compliment
+            remarksDiv.append($('<p>').text(response.compliment));
         })
     }
 
     //Get an insult
-    function getInsult() {
+    function getInsult(text) {
         $.ajax({
             url: 'https://insult.mattbas.org/api/insult',
             method: "GET",
         }).then(function (response) {
-            //Update add an insult to the div
-            remarksDiv.text(response);
+            //Empty the remarks div
+            remarksDiv.empty();
+            //Add the insult
+            remarksDiv.append($('<p>').text(response));
         })
     }
 
     //Show the currentQuestion
     function showQuestion() {
+        var question = questionArray[current];
+        var questionEl = $("<h1>").text(question.question);
+        var answerArray = [];
 
+        //Add the correct answer to the array
+        answerArray.push($("<button class='btn btn-success answer' id='correct'>").text(question.correct_answer));
+
+        //For each wrong answer add it to the array
+        for(i in question.incorrect_answers)
+        {
+            answerArray.push($("<button class='btn btn-success answer' id='correct'>").text(question.incorrect_answers[i]));
+        }
+        
+        //Append the question
+        $("#questionDiv").append(questionEl);
+
+        //Go append each answer in a random order to the dom
+        var answersLength = question.incorrect_answers.length + 1;
+        for(var i = 0; i < answersLength; i++)
+        {
+            var indexToUse = Math.floor(Math.random() * answerArray.length);
+            $("#answer" + i).text(answerArray[indexToUse]);
+            answerArray.splice(indexToUse);
+        }
     }
 
-    $('#startQuiz').on(click, startQuiz);
+    $('#startQuiz').on('click', startQuiz);
+    
+    $("#answerDiv").on("click", ".answer", function(){
+        //Show the rightWrongDiv
+        rightWrongDiv.removeClass('d-none');
+        if ($(this).attr("id") === "correct"){
+            getCompliment();
+            rightWrongDiv.text('You got this right!');
+            
+        } else {
+            getInsult();
+            rightWrongDiv.text('You got this wrong!');
+        }
+    })
 });
 
 
@@ -131,4 +173,4 @@ var difficulties = [
     { title: 'Easy', value: 'easy'},
     { title: 'Medium', value: 'medium'},
     { title: 'Hard', value: 'hard'},
-]
+];
