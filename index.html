@@ -6,8 +6,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&family=Turret+Road:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -23,14 +25,15 @@
                 <a class="navbar-brand" href="#">Show Highscores</a>
             </header>
             <div class="container">
+
                 <!-- Div for difficulty selection -->
-                <h1> Movie Maniac</h1>
+                <h1 id="app-name"> Movie Maniac</h1>
                 <div class="form-group">
-                    <label for="numQuestions">Number of Questions</label>
+                    <label for="numQuestions" class="btn-selection">Number of Questions</label>
                     <input type="number" class="form-control" name="numQuestions" id="numQuestions" value="10">
-                    <label for="category">Category</label>
+                    <label for="category" class="btn-selection">Category</label>
                     <select class="form-control" name="category" id="category"></select>
-                    <label for="difficulty">Difficulty</label>
+                    <label for="difficulty" class="btn-selection">Difficulty</label>
                     <select class="form-control" name="difficulty" id="difficulty"></select>
                     <!-- Start Quiz Button -->
                     <a class="btn" href="" id="startQuiz">Play</a>
