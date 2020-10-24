@@ -37,3 +37,13 @@ $("#answerDiv").on("click", ".answer", function(){
         alert("That is wrong!")
     }
 })
+
+function finalGif(){
+    var congrats = "";
+    var toBad = "";
+    var apikey = "EnV8tsRNu2U90oTqFnE64rRp6II4lVDM"
+
+    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=" + apikey
+
+
+}
