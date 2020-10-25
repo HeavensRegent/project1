@@ -121,12 +121,12 @@ $(document).ready(() => {
         var answerArray = [];
 
         //Add the correct answer to the array
-        answerArray.push($("<button class='btn btn-success answer' id='correct'>").html(question.correct_answer));
+        answerArray.push($("<button class='btn answer' id='correct'>").html(question.correct_answer));
 
         //For each wrong answer add it to the array
         for(i in question.incorrect_answers)
         {
-            answerArray.push($("<button class='btn btn-success answer'>").html(question.incorrect_answers[i]));
+            answerArray.push($("<button class='btn answer'>").html(question.incorrect_answers[i]));
         }
 
         if(question.incorrect_answers.length < 2)
@@ -162,7 +162,7 @@ $(document).ready(() => {
         //Else let them know and insult them 
         else {
             getInsult();
-            rightWrongDiv.html('You got this wrong! The correct answer was ' + questionArray[currentQuestion].correct_answer);
+            rightWrongDiv.html('You got this wrong! - The correct answer was ' + questionArray[currentQuestion].correct_answer);
         }
         //Disable the answers so they can't click again
         $('.answer').prop('disabled', true);
