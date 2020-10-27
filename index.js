@@ -263,3 +263,4 @@ function finalGif(result){
         $(".gifDiv").append(gif)
     })
 }   
+
