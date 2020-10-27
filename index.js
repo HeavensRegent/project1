@@ -215,6 +215,33 @@ $(document).ready(() => {
         page1.removeClass('d-none');
     })
 
+    $('#submitBtn').on("click", function (event) {
+        event.preventDefault();
+        if (JSON.parse(localStorage.getItem("users")) !== null) {
+            users = JSON.parse(localStorage.getItem("users"));
+        }
+        var input = $(".inputName").val.trim();
+        var user = {
+            Name: input,
+            Score: currentScore
+        };
+        users.push(user)
+        console.log(users)
+        localStorage.setItem("users", JSON.stringify(users));
+        $(".inputName").value = "";
+        renderUsers()
+    });
+
+    function renderUsers() {
+        for (let i = 0; i < users.length; i++) {
+            var user = users[i];
+            var newDiv = $("<div>");
+            newDiv.textContent = user.Name + "    :    " + user.Score;
+            newDiv.setAttribute("data-index", i)
+            newDiv.setAttribute("class", "nameTxt")
+            $("highScoreDiv").append(newDiv)
+        }
+    }
 
 })
 var categories = [
