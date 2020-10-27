@@ -250,3 +250,4 @@ var difficulties = [
     { title: 'Medium', value: 'medium'},
     { title: 'Hard', value: 'hard'},
 ];
+
