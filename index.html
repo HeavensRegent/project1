@@ -38,6 +38,7 @@
                     <select class="form-control" name="difficulty" id="difficulty"></select>
                     <!-- Start Quiz Button -->
                     <a class="btn" href="" id="startQuiz">Play</a>
+                    
                 </div>
             </div>
         </div>
@@ -90,21 +91,36 @@
         </div>
     </div>
     <!-- ______________________________________________ -->
-
+    
     <!-- PAGE 3 RESULTS OF QUIZ show/hide-->
-
+    <div id="page3" class='d-none'>
+    <div class="container">
     <!-- Div for Results -->
-
+        <h1>Result</h1>
+        <div id="results" class="flex-center flex-column"></div>
     <!-- Div input box for user name -->
-
-    <!-- Div for Submiting Highscore -->
-
+    <!-- Div for Submiting Highscore --> 
+    <form class="form-inline justify-content-center formName mt-3">
+        <div class="form-group">
+          <label for="name">
+            <h4>Initials:  </h4>
+          </label>
+          <input type="name" class="form-control inputName" id="name">
+        </div>
+        <button type="button" class="btn btn-danger sBtn">Submit Highscore</button>
+      </form>
+    </div>    
     <!-- container Div for Highscore -->
+    <div class="container highScoreDiv">
+    </div>
 
     <!-- container Div to review the quiz -->
+    <div class="container" id="quizReview"></div>
 
     <!-- Div for Play Again! button -->
-
+    <a class="btn" href="">Play Again!</a>
+    </div>
+</div>
     <!-- ______________________________________________ -->
 
     <!-- PAGE 4 Highscore page show/hide-->
