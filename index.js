@@ -56,6 +56,7 @@ $(document).ready(() => {
         getQuizQuestions();
     }
 
+
     //Retrieve the quiz questions based on the selected criteria
     function getQuizQuestions() {
         //If the option is any we don't want a value passed in
@@ -120,12 +121,12 @@ $(document).ready(() => {
         var answerArray = [];
 
         //Add the correct answer to the array
-        answerArray.push($("<button class='btn btn-success answer' id='correct'>").html(question.correct_answer));
+        answerArray.push($("<button class='btn answer' id='correct'>").html(question.correct_answer));
 
         //For each wrong answer add it to the array
         for(i in question.incorrect_answers)
         {
-            answerArray.push($("<button class='btn btn-success answer'>").html(question.incorrect_answers[i]));
+            answerArray.push($("<button class='btn answer'>").html(question.incorrect_answers[i]));
         }
 
         if(question.incorrect_answers.length < 2)
@@ -161,7 +162,7 @@ $(document).ready(() => {
         //Else let them know and insult them 
         else {
             getInsult();
-            rightWrongDiv.html('You got this wrong! The correct answer was ' + questionArray[currentQuestion].correct_answer);
+            rightWrongDiv.html('You got this wrong! - The correct answer was ' + questionArray[currentQuestion].correct_answer);
         }
         //Disable the answers so they can't click again
         $('.answer').prop('disabled', true);
@@ -213,9 +214,9 @@ $(document).ready(() => {
         page4.addClass('d-none');
         page1.removeClass('d-none');
     })
-});
 
 
+})
 var categories = [
     { title: 'Any Category', value: 'any'},
     { title: 'General Knowledge', value: 9},
@@ -250,4 +251,16 @@ var difficulties = [
     { title: 'Medium', value: 'medium'},
     { title: 'Hard', value: 'hard'},
 ];
+
+function finalGif(result){
+    var apikey = "EnV8tsRNu2U90oTqFnE64rRp6II4lVDM"
+    $.ajax({
+        url: "https://api.giphy.com/v1/gifs/search?api_key=" + apikey + "&q=" + result,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+        var gif = $("<img>").addClass("gifimage").attr("src", response.data[0].images.fixed_height.url)
+        $(".gifDiv").append(gif)
+    })
+}   
 
