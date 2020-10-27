@@ -7,11 +7,13 @@ $(document).ready(() => {
     var numQuestionsInput = $('#numQuestions');
     var currentCategorySelect = $('#category');
     var currentDifficultySelect = $('#difficulty');
-    var players = [];
+    var players = JSON.parse(localStorage.getItem("players")) || [];
 
     var remarksDiv = $('#remarksDiv');
     var rightWrongDiv = $('#rightWrongDiv');
     var questionDiv = $('#questionDiv');
+    var quizReviewDiv = $('#quizReview');
+    var highScoreDiv = $('.highScoreDiv');
 
     var page1 = $('#page1');
     var page2 = $('#page2');
@@ -19,6 +21,7 @@ $(document).ready(() => {
     var page4 = $('#page4');
 
     var questionArray = [];
+    var chosenAnswerArray = [];
 
     initializeLandingPage();
 
@@ -50,6 +53,7 @@ $(document).ready(() => {
         currentCategory = currentCategorySelect.val();
         currentDifficulty = currentDifficultySelect.val();
         currentQuestion = 0;
+        chosenAnswerArray = [];
 
         page1.addClass('d-none');
         page2.removeClass('d-none');
@@ -148,6 +152,30 @@ $(document).ready(() => {
         }
     }
 
+    //Show everything needed for page 3
+    function showPage3() {
+        quizResults();
+        renderUsers();
+    }
+
+    //Show each question, their answer, and the correct answer
+    function quizResults() {
+        quizReviewDiv.empty();
+
+        //Iterate through the questionArray and get their chosen answer and display it next to the correct answer
+        for(i in questionArray)
+        {
+            var questionDiv = $('<div>').html('<h6>Question ' + (parseInt(i) + 1) + ': ' + questionArray[i].question + '</h6>');
+
+            if(chosenAnswerArray[i] === questionArray[i].correct_answer)
+                questionDiv.append($('<p>').html('Your answer &quot;' + chosenAnswerArray[i] + '&quot; was <span class="text-success">Correct!</span>'));
+            else
+                questionDiv.append($('<p>').html('Your answer &quot;' + chosenAnswerArray[i] + '&quot; was <span class="text-danger">Wrong!</span> The correct answer was &quot;' + questionArray[i].correct_answer + '&quot;'));
+            
+            quizReviewDiv.append(questionDiv);
+        }
+    }
+
     //When they click on the start quiz button
     $('#startQuiz').on('click', startQuiz);
     
@@ -155,6 +183,10 @@ $(document).ready(() => {
     $("#answerDiv").on("click", ".answer", function(){
         //Show the rightWrongDiv
         rightWrongDiv.removeClass('d-none');
+
+        //Store their chosen answer for review later
+        chosenAnswerArray.push($(this).text());
+
         //If they are right let them know and give them a compliment
         if ($(this).attr("id") === "correct"){
             getCompliment();
@@ -187,6 +219,7 @@ $(document).ready(() => {
         {
             page2.addClass('d-none');
             page3.removeClass('d-none');
+            showPage3();
         }
         //Else go to the next question
         else
@@ -206,6 +239,7 @@ $(document).ready(() => {
 
         //Show the highscore div
         page4.removeClass('d-none');
+        renderUsers();
     });
 
     //When they click on the go home button
@@ -217,13 +251,16 @@ $(document).ready(() => {
         page1.removeClass('d-none');
     })
 
-    $('.sBtn').on("click", function (event) {
+    //Submit the highscore
+    $('.submitBtn').on("click", function (event) {
         event.preventDefault();
         
-        if (JSON.parse(localStorage.getItem("players")) !== null) {
-            players = JSON.parse(localStorage.getItem("players"));
-        }
         var input = $(".inputName").val();
+
+        //If there is no input, don't do anything else
+        if(!input)
+            return;
+        
         var user = {
             Name: input,
             Score: currentScore
@@ -231,19 +268,20 @@ $(document).ready(() => {
         players.push(user)
         console.log(players)
         localStorage.setItem("players", JSON.stringify(players));
-        $(".inputName").value = "";
-        renderUsers()
+        $(".inputName").val('');
+        renderUsers();
     });
 
+    //Display the highscores
     function renderUsers() {
-        $(".highScoreDiv").empty()
+        highScoreDiv.empty()
         for (let i = 0; i < players.length; i++) {
             var user = players[i];
-            var newDiv = $("<div>");
-            newDiv.text(user.Name + "    :    " + user.Score);
-            newDiv.attr("data-index", i)
-            newDiv.attr("class", "nameTxt")
-            $(".highScoreDiv").append(newDiv)
+            var newUser = $("<li>");
+            newUser.text(user.Name + "    :    " + user.Score);
+            newUser.attr("data-index", i);
+            newUser.attr("class", "nameTxt");
+            highScoreDiv.append(newUser);
         }
     }
 
