@@ -84,3 +84,17 @@ footer {
     color: white;
     text-align: center;
 }
+
+img {
+    max-width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.contactBody {
+    background-image: url(./images/projectBackground3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
