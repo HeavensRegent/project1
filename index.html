@@ -38,7 +38,7 @@
                     <select class="form-control" name="difficulty" id="difficulty"></select>
                     <!-- Start Quiz Button -->
                     <a class="btn" href="" id="startQuiz">Play</a>
-                    
+
                 </div>
             </div>
         </div>
@@ -48,14 +48,14 @@
     <!-- PAGE 2 QUIZ show/hide-->
     <div id="page2" class='d-none'>
         <!-- Div for the question and answers-->
-        <div class="container text-center quizDiv border border-success">
+        <div class="container text-center quizDiv">
             <!-- The Question-->
-            <div id="questionDiv" class="border border-danger">
+            <div id="questionDiv" class="">
                 <h2>Questions will load here</h2>
             </div>
         </div>
         <!-- Div for each answer block x 4 -->
-        <div id="answerDiv" class="container border border-danger mt-5">
+        <div id="answerDiv" class="container mt-5">
             <div class="row first-row text-center">
                 <div class="col-lg-6 bg-light" id="answer1">
                     <h4>Answer1</h4>
@@ -72,55 +72,69 @@
                     <h4>Answer4</h4>
                 </div>
             </div>
-            <div class="nextDiv d-flex justify-content-end">
-                <button type="button" class="btn btn-danger" href="" id="nextQuestion">Next Question</button>
+            <div class="nextDiv d-none">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger" href="" id="nextQuestion">Next Question</button>
+                </div>
             </div>
         </div>
         <!-- Div for results -->
-        <div class="container text-center border border-success results">
+        <div class="container text-center results">
             <!-- Div for Right or Wrong show/hide-->
-            <div id="rightWrongDiv" class="border border-danger d-none">
+            <div id="rightWrongDiv" class="d-none">
                 <h4>You are Correct or You are Wrong will load here</h4>
                 <br>
             </div>
             <!-- Div for insult/compliment -->
-            <div id="remarksDiv" class="border border-danger d-none">
+            <div id="remarksDiv" class="d-none">
                 <h4>Insult or Compliment will load here</h4>
                 <br>
             </div>
         </div>
     </div>
     <!-- ______________________________________________ -->
-    
+
     <!-- PAGE 3 RESULTS OF QUIZ show/hide-->
     <div id="page3" class='d-none'>
-    <div class="container">
-    <!-- Div for Results -->
-        <h1>Result</h1>
-        <div id="results" class="flex-center flex-column"></div>
-    <!-- Div input box for user name -->
-    <!-- Div for Submiting Highscore --> 
-    <form class="form-inline justify-content-center formName mt-3">
-        <div class="form-group">
-          <label for="name">
-            <h4>Initials:  </h4>
-          </label>
-          <input type="name" class="form-control inputName" id="name">
+        <div class="container">
+            <!-- Div for Results -->
+            <h1>Result</h1>
+            <div id="results" class="flex-center flex-column"></div>
+            <!-- Div input box for user name -->
+            <!-- Div for Submiting Highscore -->
+            <form class="form-inline justify-content-center formName mt-3">
+                <div class="form-group">
+                    <label for="name">
+                        <h4>Initials: </h4>
+                    </label>
+                    <input type="name" class="form-control inputName" id="name">
+                </div>
+                <button type="button" class="btn btn-danger submitBtn">Submit Highscore</button>
+            </form>
         </div>
-        <button type="button" class="btn btn-danger sBtn">Submit Highscore</button>
-      </form>
-    </div>    
-    <!-- container Div for Highscore -->
-    <div class="container highScoreDiv">
-    </div>
+        <!-- container Div for Highscore -->
+        <div class="container">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h4 class="card-title">Top Ten:</h4>
+                    <ol class="card-text highScoreDiv" type="1"></ol>
+                </div>
+            </div>
+        </div>
 
-    <!-- container Div to review the quiz -->
-    <div class="container" id="quizReview"></div>
+        <!-- container Div to review the quiz -->
+        <div class="container mt-2">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h4 class="card-title">Review Quiz Questions:</h4>
+                    <div id="quizReview" class="card-text"></div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Div for Play Again! button -->
-    <a class="btn" href="">Play Again!</a>
+        <!-- Div for Play Again! button -->
+        <a class="btn" href="">Play Again!</a>
     </div>
-</div>
     <!-- ______________________________________________ -->
 
     <!-- PAGE 4 Highscore page show/hide-->
@@ -129,13 +143,13 @@
             <!-- container Div showing highscores -->
             <div class="flex-center flex-column">
                 <h1 id="finalScore">High Scores</h1>
-                <ul id="highScoresList"></ul>
+                <ol class="container highScoreDiv" type="1"></ol>
                 <a class="btn" href="" id="goHome">Go Home</a>
             </div>
             <!-- button div to go back to landing page -->
         </div>
         <div class="gifDiv">
-            
+
         </div>
     </div>
     <!-- Footer Div -->
