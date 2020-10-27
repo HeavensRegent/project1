@@ -99,14 +99,19 @@
         <h1>Result</h1>
         <div id="results" class="flex-center flex-column"></div>
     <!-- Div input box for user name -->
-        <h1> Initials</h1>
-        <div id="initials" class="flex-center flex-column"></div>
-    <!-- Div for Submiting Highscore -->  
-        <a class="btn" href="">Submit Highscore</a>
-    </div>
-            
+    <!-- Div for Submiting Highscore --> 
+    <form class="form-inline justify-content-center formName mt-3">
+        <div class="form-group">
+          <label for="name">
+            <h4>Initials:  </h4>
+          </label>
+          <input type="name" class="form-control inputName" id="name">
+        </div>
+        <button type="button" class="btn btn-danger sBtn">Submit Highscore</button>
+      </form>
+    </div>    
     <!-- container Div for Highscore -->
-    <div class="container">
+    <div class="container highScoreDiv">
     </div>
 
     <!-- container Div to review the quiz -->

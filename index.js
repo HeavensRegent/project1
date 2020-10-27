@@ -3,10 +3,11 @@ $(document).ready(() => {
     var currentCategory;
     var currentDifficulty;
     var currentQuestion = 0;
-
+    var currentScore = 0;
     var numQuestionsInput = $('#numQuestions');
     var currentCategorySelect = $('#category');
     var currentDifficultySelect = $('#difficulty');
+    var players = [];
 
     var remarksDiv = $('#remarksDiv');
     var rightWrongDiv = $('#rightWrongDiv');
@@ -43,7 +44,7 @@ $(document).ready(() => {
     //Start the quiz
     function startQuiz(event) {
         event.preventDefault();
-
+        currentScore = 0;
         //Get the values and set the current question to 0
         numQuestions = (parseInt(numQuestionsInput.val()) || numQuestions);
         currentCategory = currentCategorySelect.val();
@@ -158,6 +159,7 @@ $(document).ready(() => {
         if ($(this).attr("id") === "correct"){
             getCompliment();
             rightWrongDiv.text('You got this right!');
+            currentScore += 10;
         }
         //Else let them know and insult them 
         else {
@@ -215,6 +217,35 @@ $(document).ready(() => {
         page1.removeClass('d-none');
     })
 
+    $('.sBtn').on("click", function (event) {
+        event.preventDefault();
+        
+        if (JSON.parse(localStorage.getItem("players")) !== null) {
+            players = JSON.parse(localStorage.getItem("players"));
+        }
+        var input = $(".inputName").val();
+        var user = {
+            Name: input,
+            Score: currentScore
+        };
+        players.push(user)
+        console.log(players)
+        localStorage.setItem("players", JSON.stringify(players));
+        $(".inputName").value = "";
+        renderUsers()
+    });
+
+    function renderUsers() {
+        $(".highScoreDiv").empty()
+        for (let i = 0; i < players.length; i++) {
+            var user = players[i];
+            var newDiv = $("<div>");
+            newDiv.text(user.Name + "    :    " + user.Score);
+            newDiv.attr("data-index", i)
+            newDiv.attr("class", "nameTxt")
+            $(".highScoreDiv").append(newDiv)
+        }
+    }
 
 })
 var categories = [
