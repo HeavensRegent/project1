@@ -1,7 +1,7 @@
 $(document).ready(() => {
-    var numQuestions = 10;
-    var currentCategory;
-    var currentDifficulty;
+    var numQuestions = JSON.parse(localStorage.getItem("triviaQuestions")) || 10;
+    var currentCategory = JSON.parse(localStorage.getItem("triviaCategory")) || '';
+    var currentDifficulty = localStorage.getItem("triviaDifficulty") || '';
     var currentQuestion = 0;
     var currentScore = 0;
     var numQuestionsInput = $('#numQuestions');
@@ -29,19 +29,25 @@ $(document).ready(() => {
     function initializeLandingPage() {
         //Update Category select
         var categorySelect = $('#category');
+        
+        //Go through each category and add it to the select, if it is the currently selected one (local storage) mark it as selected
         for(i in categories)
         {
             var category = categories[i];
-            categorySelect.append('<option value="' + category.value + '">' + category.title + '</option>');
+            categorySelect.append('<option value="' + category.value + '"' + (currentCategory === category.value ? 'selected' : '') + '>' + category.title + '</option>');
         }
 
         //Update Difficulty select
         var difficultySelect = $('#difficulty');
+        //Go through each difficulty and add it to the select, if it is the currently selected one (local storage) mark it as selected
         for(i in difficulties)
         {
             var difficulty = difficulties[i];
-            difficultySelect.append('<option value="' + difficulty.value + '">' + difficulty.title + '</option>');
+            difficultySelect.append('<option value="' + difficulty.value + '"' + (currentDifficulty === difficulty.value ? 'selected' : '') + '>' + difficulty.title + '</option>');
         }
+
+        numQuestionsInput.val(numQuestions);
+
     }
 
     //Start the quiz
@@ -55,6 +61,26 @@ $(document).ready(() => {
         currentQuestion = 0;
         chosenAnswerArray = [];
 
+        //If the option is any we don't want a value passed in
+        if(currentCategory === 'any')
+            currentCategory = '';
+        if(currentDifficulty === 'any')
+            currentDifficulty = '';
+
+        //Save the chosen settings to local storage
+        if(numQuestions)
+            localStorage.setItem("triviaQuestions", numQuestions);
+        else
+            localStorage.removeItem("triviaQuestions");
+        if(currentCategory)
+            localStorage.setItem("triviaCategory", currentCategory);
+        else
+            localStorage.removeItem("triviaCategory");
+        if(currentDifficulty)
+            localStorage.setItem("triviaDifficulty", currentDifficulty);
+        else
+            localStorage.removeItem("triviaDifficulty");
+
         page1.addClass('d-none');
         page2.removeClass('d-none');
 
@@ -64,12 +90,6 @@ $(document).ready(() => {
 
     //Retrieve the quiz questions based on the selected criteria
     function getQuizQuestions() {
-        //If the option is any we don't want a value passed in
-        if(currentCategory === 'any')
-            currentCategory = '';
-        if(currentDifficulty === 'any')
-            currentDifficulty = '';
-
         //Build the query url, if there is a selected currentCategory 
         var queryURL = "https://opentdb.com/api.php?amount=" + numQuestions 
         + (currentCategory ? "&category=" + currentCategory : '')
@@ -119,6 +139,7 @@ $(document).ready(() => {
 
     //Show the currentQuestion
     function showQuestion() {
+        updateScore();
         questionDiv.empty();
 
         var question = questionArray[currentQuestion];
@@ -150,6 +171,11 @@ $(document).ready(() => {
             $("#answer" + (i+1)).html(answerArray[indexToUse]);
             answerArray.splice(indexToUse, 1);
         }
+    }
+
+    //Update the score on the screen
+    function updateScore() {
+        $('#currentScore').text(currentScore);
     }
 
     //Show everything needed for page 3
@@ -202,6 +228,8 @@ $(document).ready(() => {
         $('.answer').prop('disabled', true);
         //Show the div with the button to go to the next question
         $('.nextDiv').removeClass('d-none');
+
+        updateScore();
     });
 
     //When the click on the next button
@@ -266,7 +294,17 @@ $(document).ready(() => {
             Score: currentScore
         };
         players.push(user)
-        console.log(players)
+        
+        //Sort the player array by highscore in reverse order
+        players.sort((a, b) => b.Score - a.Score);
+        
+        //Don't let the array be larger than 10
+        if(players.length > 10)
+        {
+            players.splice(10);
+        }
+
+        //Save the highscore to local storage
         localStorage.setItem("players", JSON.stringify(players));
         $(".inputName").val('');
         renderUsers();

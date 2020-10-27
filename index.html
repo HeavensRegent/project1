@@ -46,7 +46,11 @@
     <!-- ______________________________________________ -->
 
     <!-- PAGE 2 QUIZ show/hide-->
-    <div id="page2" class='d-none'>
+    <div id="page2" class='d-none container'>
+        <!-- Div for the question and answers-->
+        <div class="d-flex justify-content-end">
+            <h2>Current Score: <span id="currentScore"></span></h2>
+        </div>
         <!-- Div for the question and answers-->
         <div class="container text-center quizDiv">
             <!-- The Question-->
@@ -116,7 +120,7 @@
         <div class="container">
             <div class="card border-primary">
                 <div class="card-body">
-                    <h4 class="card-title">Top Ten:</h4>
+                    <h4 class="card-title">Leaderboard:</h4>
                     <ol class="card-text highScoreDiv" type="1"></ol>
                 </div>
             </div>
@@ -142,8 +146,12 @@
         <div class="container">
             <!-- container Div showing highscores -->
             <div class="flex-center flex-column">
-                <h1 id="finalScore">High Scores</h1>
-                <ol class="container highScoreDiv" type="1"></ol>
+                <div class="card border-primary">
+                    <div class="card-body">
+                        <h4 class="card-title">Leaderboard:</h4>
+                        <ol class="card-text highScoreDiv" type="1"></ol>
+                    </div>
+                </div>
                 <a class="btn" href="" id="goHome">Go Home</a>
             </div>
             <!-- button div to go back to landing page -->
