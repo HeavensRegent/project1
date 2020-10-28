@@ -100,16 +100,16 @@
 
     <!-- PAGE 3 RESULTS OF QUIZ show/hide-->
     <div id="page3" class='d-none'>
-        <div class="container">
+        <div class="container text-center">
             <!-- Div for Results -->
-            <h1>Result</h1>
+            <h1 class="topScore">Top Scores and Quiz Results</h1>
             <div id="results" class="flex-center flex-column"></div>
             <!-- Div input box for user name -->
             <!-- Div for Submiting Highscore -->
-            <form class="form-inline justify-content-center formName mt-3">
+            <form class="form-inline justify-content-center formName mt-3 mb-3">
                 <div class="form-group">
-                    <label for="name">
-                        <h4>Initials: </h4>
+                    <label for="name" class="mr-2 nameLabel">
+                        <h4>Name: </h4>
                     </label>
                     <input type="name" class="form-control inputName" id="name">
                 </div>
@@ -117,7 +117,7 @@
             </form>
         </div>
         <!-- container Div for Highscore -->
-        <div class="container">
+        <div class="container highDiv">
             <div class="card border-primary">
                 <div class="card-body">
                     <h4 class="card-title">Leaderboard:</h4>
@@ -127,7 +127,7 @@
         </div>
 
         <!-- container Div to review the quiz -->
-        <div class="container mt-2">
+        <div class="container mt-2 reviewDiv">
             <div class="card border-primary">
                 <div class="card-body">
                     <h4 class="card-title">Review Quiz Questions:</h4>
@@ -136,8 +136,9 @@
             </div>
         </div>
 
-        <!-- Div for Play Again! button -->
-        <a class="btn" href="">Play Again!</a>
+        <div class="text-center mt-2">
+            <a type="button" class="btn btn-success playBtn" href="">Play Again!</a>
+        </div>
     </div>
     <!-- ______________________________________________ -->
 
@@ -155,9 +156,6 @@
                 <a class="btn" href="" id="goHome">Go Home</a>
             </div>
             <!-- button div to go back to landing page -->
-        </div>
-        <div class="gifDiv">
-
         </div>
     </div>
     <!-- Footer Div -->
