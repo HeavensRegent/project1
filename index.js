@@ -325,15 +325,16 @@ $(document).ready(() => {
     }
 })
 
+// Gets random gif to display on results screen 
 function finalGif(){
-    var apikey = "EnV8tsRNu2U90oTqFnE64rRp6II4lVDM"
+    var apikey = "EnV8tsRNu2U90oTqFnE64rRp6II4lVDM";
     $.ajax({
         url: "https://api.giphy.com/v1/gifs/search?api_key=" + apikey + "&q=congratulations",
         method: "GET"
     }).then(function (response) {
-        console.log(response)
-        var gif = $("<img>").addClass("gifimage").attr("src", response.data[2].images.fixed_height.url)
-        $(".gifDiv").append(gif)
+        var randomIndex = Math.floor(Math.random() * response.data.length - 1);
+        var gif = $("<img>").addClass("gifimage").attr("src", response.data[randomIndex].images.fixed_height.url)
+        $(".gifDiv").append(gif);
     })
 }
 var categories = [
