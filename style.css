@@ -29,6 +29,10 @@
     font-family: 'Turret Road', cursive;
 }
 
+.score{
+    font-family: 'Syne Mono', monospace;
+
+}
 #nextQuestion {
     font-size: 1rem;
     width: 10rem;
