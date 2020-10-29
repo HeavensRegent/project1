@@ -323,7 +323,6 @@ $(document).ready(() => {
             highScoreDiv.append(newUser);
         }
     }
-
 })
 
 function finalGif(){
@@ -333,7 +332,7 @@ function finalGif(){
         method: "GET"
     }).then(function (response) {
         console.log(response)
-        var gif = $("<img>").addClass("gifimage").attr("src", response.data[0].images.fixed_height.url)
+        var gif = $("<img>").addClass("gifimage").attr("src", response.data[2].images.fixed_height.url)
         $(".gifDiv").append(gif)
     })
 }
