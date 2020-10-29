@@ -38,3 +38,8 @@ SO THAT I can get a much needed break from reality
 2. Get API Keys and apis working
     1. omdbapi
     2. opentdb
+
+![](/images/screenshot1.PNG)
+![](/images/screenshot2.PNG)
+![](/images/screenshot3.PNG)
+![](/images/screenshot4.PNG)

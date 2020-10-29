@@ -15,7 +15,7 @@
     font-family: 'Turret Road', cursive;
 }
 
-.answer{
+.answer {
     font-size: 1.5rem;
     width: 100%;
     height: 10rem;
@@ -80,15 +80,21 @@
     font-family: 'Syne Mono', monospace;
 }
 
-.formName, .highDiv, .reviewDiv {
+.formName,
+.highDiv,
+.reviewDiv {
     font-family: 'Turret Road', cursive;
 }
-.submitBtn, .playBtn{
+
+.submitBtn,
+.playBtn {
     font-family: 'Turret Road', cursive;
 }
+
 .topScore {
     font-family: 'Syne Mono', monospace;
 }
+
 footer {
     position: fixed;
     height: 1.5em;
