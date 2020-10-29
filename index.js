@@ -175,7 +175,7 @@ $(document).ready(() => {
 
     //Update the score on the screen
     function updateScore() {
-        $('#currentScore').text(currentScore);
+        $('.currentScore').text(currentScore);
     }
 
     //Show everything needed for page 3
