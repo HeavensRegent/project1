@@ -182,6 +182,7 @@ $(document).ready(() => {
     function showPage3() {
         quizResults();
         renderUsers();
+        finalGif()
     }
 
     //Show each question, their answer, and the correct answer
@@ -324,6 +325,18 @@ $(document).ready(() => {
     }
 
 })
+
+function finalGif(){
+    var apikey = "EnV8tsRNu2U90oTqFnE64rRp6II4lVDM"
+    $.ajax({
+        url: "https://api.giphy.com/v1/gifs/search?api_key=" + apikey + "&q=congratulations",
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+        var gif = $("<img>").addClass("gifimage").attr("src", response.data[0].images.fixed_height.url)
+        $(".gifDiv").append(gif)
+    })
+}
 var categories = [
     { title: 'Any Category', value: 'any'},
     { title: 'General Knowledge', value: 9},
@@ -359,15 +372,5 @@ var difficulties = [
     { title: 'Hard', value: 'hard'},
 ];
 
-function finalGif(result){
-    var apikey = "EnV8tsRNu2U90oTqFnE64rRp6II4lVDM"
-    $.ajax({
-        url: "https://api.giphy.com/v1/gifs/search?api_key=" + apikey + "&q=" + result,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response)
-        var gif = $("<img>").addClass("gifimage").attr("src", response.data[0].images.fixed_height.url)
-        $(".gifDiv").append(gif)
-    })
-}   
+   
 
