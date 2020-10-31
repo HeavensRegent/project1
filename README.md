@@ -1,14 +1,11 @@
-# Movie Maniac
+https://heavensregent.github.io/project1/
 
-Movie Maniac is a trivia game. Starting off you can choose your 
-difficulty level. There are a total of 10 questions and each time
-it will be a unique experience. The harder the difficulty level, the
-higher your score. On each question you will have access to different
-resources that will provide you with hints, be careful though, clicking
-on too many links will lower your score. The hints will be things such
-as (Studio, Actors, Genre, Rating, Synopsis, etc.). When you complete
-the quiz you will be able to save your highscore and compete against
-yourself to become a true Movie Maniac.
+# Big Brain Trivia
+
+Choose your way to do trivia: Do you have all day at work to get through? Set the number of questions to 1000. Want to test your knowledge on different areas? Change the category. Feeling bold? Up the difficulty to hard.
+But be warned, this is not for the faint of heart. When you get an answer right, you’ll get a compliment. However, when you get an answer wrong, you’ll get a major insult, and if you can’t take it, you won’t make it to the end.
+If you make it to the end, you will be able to review your results and update your knowledge of trivia! And save your highscore
+
 
 # User Story
 ```
